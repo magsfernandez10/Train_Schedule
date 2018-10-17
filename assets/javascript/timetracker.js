@@ -1,11 +1,12 @@
+ 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyCtfqwVL87uPyIsKOEC13l8nDU6HBqn71U",
-    authDomain: "traintracker-bb440.firebaseapp.com",
-    databaseURL: "https://traintracker-bb440.firebaseio.com",
-    projectId: "traintracker-bb440",
-    storageBucket: "traintracker-bb440.appspot.com",
-    messagingSenderId: "170907199184"
+    apiKey: "AIzaSyA7SDf5J0Yoig0IdvAxul9ph5gIjwZSoRE",
+    authDomain: "trainschedule-5bbf2.firebaseapp.com",
+    databaseURL: "https://trainschedule-5bbf2.firebaseio.com",
+    projectId: "trainschedule-5bbf2",
+    storageBucket: "",
+    messagingSenderId: "1614916935"
   };
   firebase.initializeApp(config);
 
@@ -27,30 +28,38 @@
           name: name,
           destination: destination,
           firstTrain: firstTrain,
-          minutes: freqMinutes
+          freqMinutes: freqMinutes
       });
 
-  })
+  });
 
   // Set up the child_added event for firebase train location
   database.ref("/trains").on("child_added", function (snapshot) {
       console.log(snapshot.val());
 
-      var newRow = $("<div>").addClass("row");
-      var nameCol = $("<div>").addClass("col-2").text(snapshot.val().name);
-      var destinationCol = $("<div>").addClass("col-2").text(snapshot.val().destination);
-      var firstTrainCol = $("<div>").addClass("col-2").text(snapshot.val().firstTrain);
-      var freqMinutes = moment(snapshot.val().freqMinutes);
-      console.log(freqMinutes.format());
-      console.log(moment().diff(freqMinutes, "minutes"));
-      var minutesAway = moment().diff(freqMinutes, "minutes");
+      var trainNames = snapshot.val().name
+      var destinationNames = snapshot.val().destination
+      var firsttrainTimes = snapshot.val().firstTrain
+      var frequencyTimes = snapshot.val().freqMinutes
+
+
+
+      //moment calculations//
+      var militaryTime = moment(firsttrainTimes, "HH:mm");
+      var minutesAway = moment().diff(firstTrainCol, "minutes");
 
       var minutesCol = $("<div>").addClass("col-2").text(minutesAway);
-      var rateCol = $("<div>").addClass("col-2").text(snapshot.val().rate);
+      //var rateCol = $("<div>").addClass("col-2").text(snapshot.val().rate);
       
-      var earnings = minutesAway * snapshot.val().rate;
-      var earningsCol = $("<div>").addClass("col-2").text(earnings);
-      newRow.append(nameCol, destinationCol, firstTrainCol, minutesCol, rateCol, earningsCol);
+    //jQuery rows//
+      var newRow = $("<div>").addClass("row");
+      var nameCol = $("<div>").addClass("col-2").text(trainNames);
+      var destinationCol = $("<div>").addClass("col-2").text(destinationNames);
+      var firstTrainCol = $("<div>").addClass("col-2").text(firsttrainTimes);
+      
+      var nextTrain = minutesAway * snapshot.val().firstTrain;
+      var nextTrainCol = $("<div>").addClass("col-2").text(nextTrain);
+      newRow.append(nameCol, destinationCol,freqMinutes, minutesCol, nextTrainCol);
 
       $("#trainTimes").append(newRow);
 

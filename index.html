@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Train Tracker</title>
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='crossorigin='anonymous'></script>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    
+    
+
+    
 </head>
 
 <body>
@@ -42,21 +45,21 @@
 
         <br>
         <label class="form-control">Train Name</label>
-        <input id="name" class="form-control" type="text" placeholder="employee name">
+        <input id="name" class="form-control" type="text" placeholder="train name">
 
         <label class="form-control">Destination</label>
-        <input id="destination" class="form-control" type="text" placeholder="enter role">
+        <input id="destination" class="form-control" type="text" placeholder="destination">
 
         <label class="form-control">First Train Time (HH:mm-military time)</label>
-        <input id="firstTrain" class="form-control" type="text" placeholder="add start date">
+        <input id="firstTrain" class="form-control" type="text" placeholder="first train time">
 
         <label class="form-control">Frequency (min)</label>
-        <input id="freqMinutes" class="form-control" type="text" placeholder="add monthly rate">
+        <input id="freqMinutes" class="form-control" type="text" placeholder="frequent minutes">
         
         <button id="submit" type="submit">Submit</button>
 
     </form>
-    <script src="timetracker.js"></script>
+    <script src="assets/javascript/timetracker.js"></script>
 </body>
 
 </html>
