@@ -13,7 +13,7 @@
   var database = firebase.database();
 
   // Set up Click Event for the Submit button
-  $("#submit").on("click", function (event) {
+  $(document).on("click", function (event) {
       console.log("SUBMITTING FORM");
       event.preventDefault();
       var name = $("#name").val().trim();
@@ -30,8 +30,11 @@
           firstTrain: firstTrain,
           freqMinutes: freqMinutes
       });
-
-  });
+$("#name").val("");
+$("#destination").val("");
+$("#firstTrain").val("");
+$("#freqMinutes").val("");
+});
 
   // Set up the child_added event for firebase train location
   database.ref("/trains").on("child_added", function (snapshot) {
@@ -45,13 +48,14 @@
 
 
       //moment calculations//
-      var militaryTime = moment(firsttrainTimes, "HH:mm");
+      var militaryTime = moment(firsttrainTimes, "HH:mm").subtract(1, "years");
       var minutesAway = moment().diff(firstTrainCol, "minutes");
+      var difference = minutesAway % parseInt(firsttrainTimes.frequencyTimes)
+      var remaining = firsttrainTimes - difference;
+
+        //jQuery rows//
 
       var minutesCol = $("<div>").addClass("col-2").text(minutesAway);
-      //var rateCol = $("<div>").addClass("col-2").text(snapshot.val().rate);
-      
-    //jQuery rows//
       var newRow = $("<div>").addClass("row");
       var nameCol = $("<div>").addClass("col-2").text(trainNames);
       var destinationCol = $("<div>").addClass("col-2").text(destinationNames);
